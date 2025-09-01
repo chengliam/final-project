@@ -2,43 +2,34 @@ package com.bootcamp.demo.project_data_provider.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-// import org.springframework.stereotype.Indexed;
-// import jakarta.annotation.Generated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "symbols")
+@Table(name = "quotes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class SymbolEntity {
+public class QuoteEntity {
   @Id
-  // @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private String symbol;
+  private Double c;
   @Column(nullable = false)
-  private String currency;
+  private Double d;
   @Column(nullable = false)
-  private String description;
+  private Double dp;
   @Column(nullable = false)
-  private String displaySymbol;
+  private Double h;
   @Column(nullable = false)
-  private String figi;
-
-  private String isin;
+  private Double l;
   @Column(nullable = false)
-  private String mic;
+  private Double o;
   @Column(nullable = false)
-  private String shareClassFIGI;
-
-  private String symbol2;
+  private Double pc;
   @Column(nullable = false)
-  private String type;
+  private Long t;
 }
