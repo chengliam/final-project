@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.bootcamp.demo.project_data_provider.controller.FHOperation;
 import com.bootcamp.demo.project_data_provider.entity.QuoteEntity;
+import com.bootcamp.demo.project_data_provider.entity.ProfileEntity;
 import com.bootcamp.demo.project_data_provider.entity.SymbolEntity;
 import com.bootcamp.demo.project_data_provider.model.dto.QuoteDTO;
+import com.bootcamp.demo.project_data_provider.model.dto.ProfileDTO;
 import com.bootcamp.demo.project_data_provider.model.dto.SymbolDTO;
 import com.bootcamp.demo.project_data_provider.service.FHService;
 
@@ -31,17 +33,18 @@ public class FHController implements FHOperation {
   }
 
   @Override
-  public List<QuoteEntity> getAndSaveQuotes() {
+  public List<QuoteEntity> gatAndSaveQuotes() {
     return this.fhService.getAndSaveQuotes();
   }
 
   @Override
-  public List getNextDatas() {
-    return this.fhService.getNextDatas();
+  public List<ProfileDTO> getProfiles() {
+    return this.fhService.getProfiles();
   }
 
   @Override
-  public List getAndSaveNextDatas() {
-    return this.fhService.getAndSaveNextDatas();
+  public List<ProfileEntity> getAndSaveProfiles() {
+    return this.fhService.getAndSaveProfiles();
   }
+
 }

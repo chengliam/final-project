@@ -17,19 +17,21 @@ import lombok.NoArgsConstructor;
 @Builder
 public class QuoteEntity {
   @Id
+  private String symbol;
+  @Column(name = "current_price")
   private Double c;
-  @Column(nullable = false)
+  @Column(name = "change")
   private Double d;
-  @Column(nullable = false)
+  @Column(name = "percent_change")
   private Double dp;
-  @Column(nullable = false)
+  @Column(name = "high_price")
   private Double h;
-  @Column(nullable = false)
+  @Column(name = "low_price")
   private Double l;
-  @Column(nullable = false)
+  @Column(name = "open_price")
   private Double o;
-  @Column(nullable = false)
+  @Column(name = "previous_close_price")
   private Double pc;
-  @Column(nullable = false)
+  @Column(name = "timestamp")
   private Long t;
 }

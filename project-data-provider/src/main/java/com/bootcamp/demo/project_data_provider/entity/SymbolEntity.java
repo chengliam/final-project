@@ -1,6 +1,6 @@
 package com.bootcamp.demo.project_data_provider.entity;
 
-import jakarta.persistence.Column;
+// import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 // import jakarta.persistence.GeneratedValue;
 // import jakarta.persistence.GenerationType;
@@ -21,24 +21,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SymbolEntity {
   @Id
-  // @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String symbol;
-  @Column(nullable = false)
   private String currency;
-  @Column(nullable = false)
   private String description;
-  @Column(nullable = false)
   private String displaySymbol;
-  @Column(nullable = false)
   private String figi;
-
   private String isin;
-  @Column(nullable = false)
   private String mic;
-  @Column(nullable = false)
   private String shareClassFIGI;
-
   private String symbol2;
-  @Column(nullable = false)
   private String type;
 }

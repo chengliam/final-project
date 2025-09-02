@@ -1,9 +1,7 @@
 package com.bootcamp.demo.project_data_provider.service.impl;
 
 import java.util.ArrayList;
-// import java.util.ArrayList;
 import java.util.Arrays;
-// import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +9,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.bootcamp.demo.project_data_provider.entity.NextDataEntity;
 import com.bootcamp.demo.project_data_provider.entity.QuoteEntity;
+import com.bootcamp.demo.project_data_provider.entity.ProfileEntity;
 import com.bootcamp.demo.project_data_provider.entity.SymbolEntity;
 import com.bootcamp.demo.project_data_provider.lib.Scheme;
 import com.bootcamp.demo.project_data_provider.mapper.EntityMapper;
-import com.bootcamp.demo.project_data_provider.model.dto.NextDataDTO;
 import com.bootcamp.demo.project_data_provider.model.dto.QuoteDTO;
+import com.bootcamp.demo.project_data_provider.model.dto.ProfileDTO;
 import com.bootcamp.demo.project_data_provider.model.dto.SymbolDTO;
-import com.bootcamp.demo.project_data_provider.repository.NextDataRepository;
 import com.bootcamp.demo.project_data_provider.repository.QuoteRepository;
+import com.bootcamp.demo.project_data_provider.repository.ProfileRepository;
 import com.bootcamp.demo.project_data_provider.repository.SymbolRepository;
 import com.bootcamp.demo.project_data_provider.service.FHService;
-// import jakarta.persistence.EntityManager;
 
 @Service
 public class FHServiceImpl implements FHService {
@@ -36,19 +33,14 @@ public class FHServiceImpl implements FHService {
   @Value("${service-api.finnhub.endpoints.quote}")
   private String quotesEndpoint;
 
+  @Value("${service-api.finnhub.endpoints.stock-profile}")
+  private String profileEndpoint;
+
   @Value("${service-api.finnhub.api-key}")
   private String apiKey;
 
   @Autowired
   private RestTemplate restTemplate;
-  // private String url1 = UriComponentsBuilder.newInstance()
-  // .scheme(Scheme.HTTPS.getValue()).host(domain).path(symbolsEndpoint)
-  // .queryParam("exchange", "US").queryParam("mic", "XNYS")
-  // .queryParam("token", apiKey).build().toUriString();
-  // private String url2 =
-  // UriComponentsBuilder.newInstance().scheme(Scheme.HTTPS.getValue())
-  // .host(domain).path(quotesEndpoint).queryParam("symbol", "{symbols}")
-  // .queryParam("token", apiKey).build().toUriString();
 
   @Autowired
   private SymbolRepository symbolRepository;
@@ -57,18 +49,11 @@ public class FHServiceImpl implements FHService {
   private QuoteRepository quoteRepository;
 
   @Autowired
-  private NextDataRepository nextDataRepository;
+  private ProfileRepository profileRepository;
 
   @Autowired
   private EntityMapper entityMapper;
 
-  // @Override
-  // public List<SymbolDTO> getSymbols() {
-  // String url =
-  // UriComponentsBuilder.newInstance().scheme(Scheme.HTTPS.getValue())
-  // .host(domain).path(symbolsEndpoint).build().toUriString();
-  // System.out.println("url = " + url);
-  // https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNYS&token=d2iokopr01qhm15bf0h0d2iokopr01qhm15bf0hg
   @Override
   public List<SymbolDTO> getSymbols() {
     String url = UriComponentsBuilder.newInstance()
@@ -90,17 +75,45 @@ public class FHServiceImpl implements FHService {
     return this.symbolRepository.saveAll(symbolEntities);
   }
 
-  // https://finnhub.io/api/v1/quote?symbol=GNL.PRB&token=d2iokopr01qhm15bf0h0d2iokopr01qhm15bf0hg
   @Override
   public List<QuoteDTO> getQuotes() {
-    String url =
-        UriComponentsBuilder.newInstance().scheme(Scheme.HTTPS.getValue())
-            .host(domain).path(quotesEndpoint).queryParam("symbol", "AAPL")
-            .queryParam("token", apiKey).build().toUriString();
-    System.out.println("url = " + url);
+    List<SymbolEntity> symbols = symbolRepository.findAll();
+    List<QuoteDTO> results = new ArrayList<>();
+    int counter = 0;
 
-    QuoteDTO quotes = this.restTemplate.getForObject(url, QuoteDTO.class);
-    return Arrays.asList(quotes);
+    for (SymbolEntity symbol : symbols) {
+      String url = UriComponentsBuilder.newInstance()
+          .scheme(Scheme.HTTPS.getValue()).host(domain).path(quotesEndpoint)
+          .queryParam("symbol", symbol.getSymbol()).queryParam("token", apiKey)
+          .build().toUriString();
+      System.out.println("url = " + url);
+
+      QuoteDTO quoteDTO = this.restTemplate.getForObject(url, QuoteDTO.class);
+      if (quoteDTO == null)
+        continue;
+      counter++;
+      System.out.println("counter = " + counter);
+      quoteDTO.setSymbol(symbol.getSymbol());
+      System.out.println("quoteDTO = " + quoteDTO);
+      results.add(quoteDTO);
+
+      // if (counter % 30 == 0) {
+      // try {
+      // System.out.println("Now stop a minute.");
+      // Thread.sleep(60 * 1000);
+      // } catch (InterruptedException e) {
+      // e.printStackTrace();
+      // }
+      // }
+
+      if (counter == 10) {
+        break;
+      }
+    }
+
+    System.out.println("Finish all");
+    System.out.println("results = " + results);
+    return results;
   }
 
   @Override
@@ -112,31 +125,29 @@ public class FHServiceImpl implements FHService {
   }
 
   @Override
-  public List<NextDataDTO> getNextDatas() {
+  public List<ProfileDTO> getProfiles() {
     List<SymbolEntity> symbols = symbolRepository.findAll();
-    List<NextDataDTO> results = new ArrayList<>();
-    int id = 0;
+    List<ProfileDTO> results = new ArrayList<>();
+    int counter = 0;
 
     for (SymbolEntity symbol : symbols) {
       String url = UriComponentsBuilder.newInstance()
-          .scheme(Scheme.HTTPS.getValue()).host(domain).path(quotesEndpoint)
+          .scheme(Scheme.HTTPS.getValue()).host(domain).path(profileEndpoint)
           .queryParam("symbol", symbol.getSymbol()).queryParam("token", apiKey)
           .build().toUriString();
       System.out.println("url = " + url);
 
-      NextDataDTO nextDataDTO =
-          this.restTemplate.getForObject(url, NextDataDTO.class);
-      if (nextDataDTO == null)
+      ProfileDTO profileDTO =
+          this.restTemplate.getForObject(url, ProfileDTO.class);
+      if (profileDTO == null)
         continue;
-      id++;
-      System.out.println("id = " + id);
-      nextDataDTO.setId(id);
-      nextDataDTO.setSymbol(symbol.getSymbol());
-      System.out.println("nextDataEntity = " + nextDataDTO);
+      counter++;
+      System.out.println("counter = " + counter);
+      profileDTO.setSymbol(symbol.getSymbol());
+      System.out.println("profileDTO = " + profileDTO);
+      results.add(profileDTO);
 
-      results.add(nextDataDTO);
-
-      // if (id % 30 == 0) {
+      // if (counter % 30 == 0) {
       // try {
       // System.out.println("Now stop a minute.");
       // Thread.sleep(60 * 1000);
@@ -144,46 +155,22 @@ public class FHServiceImpl implements FHService {
       // e.printStackTrace();
       // }
       // }
-      if (id == 30) {
+
+      if (counter == 10) {
         break;
       }
     }
+
     System.out.println("Finish all");
     System.out.println("results = " + results);
     return results;
   }
 
-
-  // List entitiesToSave = new ArrayList<>();
-  // System.out.println("entitiesToSave is = " + entitiesToSave);
-
-  // for (SymbolEntity se : symbols) {
-  // String symbol = se.getSymbol();
-  // // 使用统一的 URL 模板，通过符号参数获取后续数据
-  // NextDataDTO dto = restTemplate.getForObject(nextApiUrlTemplate,
-  // NextDataDTO.class, symbol);
-  // if (dto == null)
-  // continue;
-  // dto.setSymbol(symbol);
-
-  // NextDataEntity entity = NextDataEntity.builder().symbol(symbol)
-  // .c(dto.getC()).d(dto.getD()).dp(dto.getDp()).h(dto.getH())
-  // .l(dto.getL()).o(dto.getO()).pc(dto.getPc()).t(dto.getT()).build();
-
-  // entitiesToSave.add(entity);
-  // results.add(dto);
-  // }
-
-  // // 保存到数据库
-  // nextDataRepository.saveAll(entitiesToSave);
-
-
   @Override
-  public List<NextDataEntity> getAndSaveNextDatas() {
-    List<NextDataEntity> nextDataEntities = this.getNextDatas().stream()
+  public List<ProfileEntity> getAndSaveProfiles() {
+    List<ProfileEntity> profileEntities = this.getProfiles().stream()
         .map(e -> this.entityMapper.map(e)).collect(Collectors.toList());
-    this.nextDataRepository.deleteAll();
-    return this.nextDataRepository.saveAll(nextDataEntities);
+    this.profileRepository.deleteAll();
+    return this.profileRepository.saveAll(profileEntities);
   }
-
 }

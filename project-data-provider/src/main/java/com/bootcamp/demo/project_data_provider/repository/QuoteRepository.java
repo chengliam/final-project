@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.bootcamp.demo.project_data_provider.entity.QuoteEntity;
 
 @Repository
-public interface QuoteRepository extends JpaRepository<QuoteEntity, Double> {
+public interface QuoteRepository
+    extends JpaRepository<QuoteEntity, String> {
 
 }

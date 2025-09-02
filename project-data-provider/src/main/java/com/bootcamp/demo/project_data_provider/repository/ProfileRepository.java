@@ -2,9 +2,10 @@ package com.bootcamp.demo.project_data_provider.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.bootcamp.demo.project_data_provider.entity.NextDataEntity;
+import com.bootcamp.demo.project_data_provider.entity.ProfileEntity;
 
 @Repository
-public interface NextDataRepository extends JpaRepository<NextDataEntity, Integer>{
-  
+public interface ProfileRepository
+    extends JpaRepository<ProfileEntity, String> {
+
 }

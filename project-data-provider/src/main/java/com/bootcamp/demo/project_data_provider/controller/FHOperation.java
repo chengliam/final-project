@@ -4,9 +4,10 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.bootcamp.demo.project_data_provider.entity.QuoteEntity;
+import com.bootcamp.demo.project_data_provider.entity.ProfileEntity;
 import com.bootcamp.demo.project_data_provider.entity.SymbolEntity;
-// import com.bootcamp.demo.project_data_provider.model.dto.NextDataDTO;
 import com.bootcamp.demo.project_data_provider.model.dto.QuoteDTO;
+import com.bootcamp.demo.project_data_provider.model.dto.ProfileDTO;
 import com.bootcamp.demo.project_data_provider.model.dto.SymbolDTO;
 
 public interface FHOperation {
@@ -20,11 +21,11 @@ public interface FHOperation {
   List<QuoteDTO> getQuotes();
 
   @PostMapping(value = "fh/database/quotes")
-  List<QuoteEntity> getAndSaveQuotes();
+  List<QuoteEntity> gatAndSaveQuotes();
 
-  @GetMapping(value = "fh/nextdata")
-  List getNextDatas();
+  @GetMapping(value = "fh/profiles")
+  List<ProfileDTO> getProfiles();
 
-  @PostMapping(value = "fh/database/nextdata")
-  List getAndSaveNextDatas();
+  @PostMapping(value = "fh/database/profiles")
+  List<ProfileEntity> getAndSaveProfiles();
 }

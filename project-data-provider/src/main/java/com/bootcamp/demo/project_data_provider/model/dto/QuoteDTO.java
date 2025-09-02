@@ -1,9 +1,12 @@
 package com.bootcamp.demo.project_data_provider.model.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class QuoteDTO {
+  private String symbol;
   private Double c;
   private Double d;
   private Double dp;
