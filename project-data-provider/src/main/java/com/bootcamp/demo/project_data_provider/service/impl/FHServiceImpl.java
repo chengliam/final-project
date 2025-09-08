@@ -97,18 +97,18 @@ public class FHServiceImpl implements FHService {
       System.out.println("quoteDTO = " + quoteDTO);
       results.add(quoteDTO);
 
-      // if (counter % 30 == 0) {
-      // try {
-      // System.out.println("Now stop a minute.");
-      // Thread.sleep(60 * 1000);
-      // } catch (InterruptedException e) {
-      // e.printStackTrace();
-      // }
-      // }
-
-      if (counter == 10) {
-        break;
+      if (counter % 30 == 0) {
+      try {
+      System.out.println("Now stop a minute.");
+      Thread.sleep(60 * 1000);
+      } catch (InterruptedException e) {
+      e.printStackTrace();
       }
+      }
+
+      // if (counter == 10) {
+      //   break;
+      // }
     }
 
     System.out.println("Finish all");
@@ -147,18 +147,18 @@ public class FHServiceImpl implements FHService {
       System.out.println("profileDTO = " + profileDTO);
       results.add(profileDTO);
 
-      // if (counter % 30 == 0) {
-      // try {
-      // System.out.println("Now stop a minute.");
-      // Thread.sleep(60 * 1000);
-      // } catch (InterruptedException e) {
-      // e.printStackTrace();
-      // }
-      // }
-
-      if (counter == 10) {
-        break;
+      if (counter % 30 == 0) {
+      try {
+      System.out.println("Now stop a minute.");
+      Thread.sleep(60 * 1000);
+      } catch (InterruptedException e) {
+      e.printStackTrace();
       }
+      }
+
+      // if (counter == 10) {
+      //   break;
+      // }
     }
 
     System.out.println("Finish all");

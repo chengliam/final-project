@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driverClassName: "org.postgresql.Driver"
+    url: "jdbc:postgresql://localhost:5432/bootcamp_2504p"
+    username: "postgres"
+    password: "admin1234"
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 2000
+
+service-api:
+  finnhub:
+    host: "finnhub.io"
+    api-key: "d2iokopr01qhm15bf0h0d2iokopr01qhm15bf0hg"
+    secret-key: "d2hu739r01qqpjgpv1p0"
+    endpoints:
+      stock-symbols: "/api/v1/stock/symbol"
+      quote: "/api/v1/quote"
+      stock-profile: "/api/v1/stock/profile2"
+
+server:
+  port: 8080
