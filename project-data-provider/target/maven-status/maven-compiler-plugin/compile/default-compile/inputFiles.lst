@@ -7,6 +7,7 @@
 /Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/entity/SymbolEntity.java
 /Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/exception/BusinessException.java
 /Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/exception/ErrorDTO.java
+/Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/exception/GlobalExceptionHandler.java
 /Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/exception/SysError.java
 /Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/lib/Scheme.java
 /Users/ios/bc2504p/final-project/project-data-provider/src/main/java/com/bootcamp/demo/project_data_provider/mapper/EntityMapper.java

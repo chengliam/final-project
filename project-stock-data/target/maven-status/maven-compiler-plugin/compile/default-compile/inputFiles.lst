@@ -1,0 +1,10 @@
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/ProjectStockDataApplication.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/controller/StockController.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/dto/StockFrontendDTO.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/dto/StockOhlcDataDTO.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/entity/Stock.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/entity/StockOhlcData.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/entity/StockProfile.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/repository/StockOhlcDataRepository.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/repository/StockRepository.java
+/Users/ios/bc2504p/final-project/project-stock-data/src/main/java/com/bootcamp/demo/project_stock_data/service/StockService.java

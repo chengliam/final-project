@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Scheme {
-  HTTPS("https"), HTTP("http"),;
+  HTTPS("https"), HTTP("http");
 
   private String value;
 

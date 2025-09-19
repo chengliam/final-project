@@ -1,12 +1,15 @@
 com/bootcamp/demo/project_data_provider/entity/SymbolEntity$SymbolEntityBuilder.class
 com/bootcamp/demo/project_data_provider/lib/Scheme.class
 com/bootcamp/demo/project_data_provider/repository/ProfileRepository.class
+com/bootcamp/demo/project_data_provider/model/dto/SymbolDTO$SymbolDTOBuilder.class
 com/bootcamp/demo/project_data_provider/controller/FHOperation.class
 com/bootcamp/demo/project_data_provider/mapper/EntityMapper.class
 com/bootcamp/demo/project_data_provider/ProjectDataProviderApplication.class
 com/bootcamp/demo/project_data_provider/model/dto/ProfileDTO.class
 com/bootcamp/demo/project_data_provider/config/AppConfig.class
+com/bootcamp/demo/project_data_provider/model/dto/ProfileDTO$ProfileDTOBuilder.class
 com/bootcamp/demo/project_data_provider/repository/SymbolRepository.class
+com/bootcamp/demo/project_data_provider/exception/GlobalExceptionHandler.class
 com/bootcamp/demo/project_data_provider/exception/ErrorDTO.class
 com/bootcamp/demo/project_data_provider/repository/QuoteRepository.class
 com/bootcamp/demo/project_data_provider/exception/SysError.class
@@ -22,3 +25,4 @@ com/bootcamp/demo/project_data_provider/model/dto/QuoteDTO.class
 com/bootcamp/demo/project_data_provider/service/impl/FHServiceImpl.class
 com/bootcamp/demo/project_data_provider/entity/SymbolEntity.class
 com/bootcamp/demo/project_data_provider/entity/QuoteEntity$QuoteEntityBuilder.class
+com/bootcamp/demo/project_data_provider/model/dto/QuoteDTO$QuoteDTOBuilder.class

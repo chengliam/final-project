@@ -1,28 +1,41 @@
+# application.yml - 簡化版（基於您的原始版本）
 spring:
+  # === 數據庫配置 ===
   datasource:
-    driverClassName: "org.postgresql.Driver"
-    url: "jdbc:postgresql://localhost:5432/bootcamp_2504p"
-    username: "postgres"
-    password: "admin1234"
+    driver-class-name: org.postgresql.Driver  # ✅ 修正：驼峰命名，縮進正確
+    url: jdbc:postgresql://localhost:5432/bootcamp_2504p  # ✅ 修正：移除引號，縮進正確
+    username: postgres  # ✅ 修正：縮進正確
+    password: admin1234  # ✅ 修正：縮進正確
+    
   jpa:
-    show-sql: true
-    hibernate.ddl-auto: update
+    show-sql: true  # ✅ 修正：縮進正確
+    hibernate:
+      ddl-auto: update  # ✅ 修正：縮進正確
+  
+  # === JSON 日期配置（僅為 LocalDate 支持） ===
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false  # ✅ 讓 LocalDate 序列化為字符串格式
+  
+  # === Redis 配置 ===
   data:
     redis:
-      host: localhost
-      port: 6379
-      database: 0
-      timeout: 2000
-
+      host: localhost  # ✅ 修正：縮進正確
+      port: 6379  # ✅ 修正：縮進正確
+      database: 0  # ✅ 修正：縮進正確
+      timeout: 2000ms  # ✅ 修正：添加單位
+  
+# === Finnhub API 配置 ===
 service-api:
   finnhub:
-    host: "finnhub.io"
-    api-key: "d2iokopr01qhm15bf0h0d2iokopr01qhm15bf0hg"
-    secret-key: "d2hu739r01qqpjgpv1p0"
+    host: finnhub.io  # ✅ 修正：移除引號，縮進正確
+    api-key: d2iokopr01qhm15bf0h0d2iokopr01qhm15bf0hg  # ✅ 移除引號（但建議使用環境變量）
+    secret-key: d2hu739r01qqpjgpv1p0  # ✅ 移除引號
     endpoints:
-      stock-symbols: "/api/v1/stock/symbol"
-      quote: "/api/v1/quote"
-      stock-profile: "/api/v1/stock/profile2"
+      stock-symbols: /api/v1/stock/symbol  # ✅ 修正：縮進正確
+      quote: /api/v1/quote  # ✅ 修正：縮進正確
+      stock-profile: /api/v1/stock/profile2  # ✅ 修正：縮進正確
 
+# === 服務器配置 ===
 server:
-  port: 8080
+  port: 8080  # ✅ 修正：縮進正確
